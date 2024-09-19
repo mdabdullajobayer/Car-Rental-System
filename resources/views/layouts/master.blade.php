@@ -22,7 +22,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('admin.home') }}">
                     Car Rental System Admin
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -33,10 +33,18 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::is('cars*') ? 'active' : '' }}"
+                                href="{{ route('cars.index') }}">Manage Cars</a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.CarCreate') }}">Manage Rentals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.CarCreate') }}">Manage Customers</a>
+                        </li> --}}
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
@@ -57,7 +65,6 @@
                                 </form>
                             </div>
                         </li>
-
                     </ul>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Frontend\CustomerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('admin/dashboard', [AdminController::class, 'index'])->middleware('role:admin');
+Route::prefix('admin')->middleware('role:admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.home');
+    Route::resource('cars', CarController::class,);
+});
 
-Route::get('customer/dashboard', [CustomerController::class, 'index'])->middleware('role:customer');
+Route::prefix('customer')->middleware('role:customer')->group(function () {
+    Route::get('/dashboard', [CustomerController::class, 'index']);
+});
