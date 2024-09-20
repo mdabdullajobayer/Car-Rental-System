@@ -38,6 +38,10 @@
                             <a class="nav-link {{ Route::is('cars*') ? 'active' : '' }}"
                                 href="{{ route('cars.index') }}">Manage Cars</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::is('customer*') ? 'active' : '' }}"
+                                href="{{ route('customers.index') }}">Manage Customer</a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.CarCreate') }}">Manage Rentals</a>
                         </li>

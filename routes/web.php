@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Frontend\CustomerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,8 @@ Auth::routes();
 
 Route::prefix('admin')->middleware('role:admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.home');
-    Route::resource('cars', CarController::class,);
+    Route::resource('cars', CarController::class);
+    Route::resource('customers', AdminCustomerController::class);
 });
 
 Route::prefix('customer')->middleware('role:customer')->group(function () {
