@@ -42,12 +42,10 @@
                             <a class="nav-link {{ Route::is('customer*') ? 'active' : '' }}"
                                 href="{{ route('customers.index') }}">Manage Customer</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.CarCreate') }}">Manage Rentals</a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.CarCreate') }}">Manage Customers</a>
-                        </li> --}}
+                            <a class="nav-link {{ Route::is('rentals*') ? 'active' : '' }}"
+                                href="{{ route('rentals.index') }}">Manage Rentals</a>
+                        </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
