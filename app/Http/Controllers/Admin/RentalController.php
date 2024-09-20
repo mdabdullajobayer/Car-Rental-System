@@ -19,13 +19,14 @@ class RentalController extends Controller
 
     public function create()
     {
-        $car = Car::all();
+        $car = Car::where('availability', 1)->get();
         $customer = User::where('role', 'customer')->get();
         return view('Admin.Rentals.create', compact('car', 'customer'));
     }
 
     public function edit(Rental $rental)
     {
+        // $car = Car::where('availability', 1)->get();
         $car = Car::all();
         $customer = User::where('role', 'customer')->get();
         return view('Admin.Rentals.edit', compact('rental', 'car', 'customer'));
@@ -39,29 +40,41 @@ class RentalController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'user_id' => 'required',
-            'car_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'status' => 'required',
-            'total_cost' => 'required',
-        ]);
-        $user = Rental::create($validated);
-        return redirect()->back()->with('success', 'Rentals Create successfully!');
+        try {
+            $validated = $request->validate([
+                'user_id' => 'required',
+                'car_id' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'status' => 'required',
+                'total_cost' => 'required',
+            ]);
+            Rental::create($validated);
+            Car::where('id', $validated['car_id'])->update(['availability' => 0]);
+            return redirect()->back()->with('success', 'Rentals Create successfully!');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public function update(Request $request, Rental $rental)
     {
-        $validated = $request->validate([
-            'user_id' => 'required',
-            'car_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'status' => 'required',
-            'total_cost' => 'required',
-        ]);
-        $rental->update($validated);
-        return to_route('rentals.index')->with('success', 'Rentals Updated successfully!');
+        try {
+            $validated = $request->validate([
+                'user_id' => 'required',
+                'car_id' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'status' => 'required',
+                'total_cost' => 'required',
+            ]);
+            if (strtolower($validated['status']) === 'completed' || strtolower($validated['status']) === 'canceled') {
+                Car::where('id', $validated['car_id'])->update(['availability' => 1]);
+            }
+            $rental->update($validated);
+            return to_route('rentals.index')->with('success', 'Rentals Updated successfully!');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function destroy(Rental $rental)

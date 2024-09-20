@@ -86,8 +86,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="end_date"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Start Date') }}</label>
+                            <label for="end_date" class="col-md-4 col-form-label text-md-end">{{ __('End Date') }}</label>
                             <div class="col-md-6">
                                 <input type="date"id="end_date"
                                     class="form-control @error('end_date') is-invalid @enderror" name="end_date" required
