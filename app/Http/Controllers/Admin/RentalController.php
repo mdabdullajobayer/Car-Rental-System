@@ -50,7 +50,7 @@ class RentalController extends Controller
                 'total_cost' => 'required',
             ]);
             Rental::create($validated);
-            Car::where('id', $validated['car_id'])->update(['availability' => 0]);
+            // Car::where('id', $validated['car_id'])->update(['availability' => 0]);
             return redirect()->back()->with('success', 'Rentals Create successfully!');
         } catch (\Throwable $th) {
             throw $th;
@@ -67,6 +67,9 @@ class RentalController extends Controller
                 'status' => 'required',
                 'total_cost' => 'required',
             ]);
+            if (strtolower($validated['status']) === 'ongoing') {
+                Car::where('id', $validated['car_id'])->update(['availability' => 0]);
+            }
             if (strtolower($validated['status']) === 'completed' || strtolower($validated['status']) === 'canceled') {
                 Car::where('id', $validated['car_id'])->update(['availability' => 1]);
             }

@@ -58,6 +58,7 @@
                                 <select id="status" class="form-control @error('status') is-invalid @enderror"
                                     name="status" required autocomplete="status" autofocus>
                                     <option value=" ">-- Select Status --</option>
+                                    <option value="Pending">Pending</option>
                                     <option value="Ongoing">Ongoing</option>
                                     <option value="Completed">Completed</option>
                                     <option value="Canceled">Canceled</option>

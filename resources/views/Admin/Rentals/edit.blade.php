@@ -65,6 +65,9 @@
                                 <select id="status" class="form-control @error('status') is-invalid @enderror"
                                     name="status" required>
                                     <option value="">-- Select Status --</option>
+                                    <option value="Pending"
+                                        {{ old('status', $rental->status) == 'Pending' ? 'selected' : '' }}>Pending
+                                    </option>
                                     <option value="Ongoing"
                                         {{ old('status', $rental->status) == 'Ongoing' ? 'selected' : '' }}>Ongoing
                                     </option>
