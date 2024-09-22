@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('car_id')->references('id')->on('cars')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->enum('status', ['Ongoing', 'Completed', 'Canceled'])->default('Ongoing');
+            $table->enum('status', ['Pending', 'Ongoing', 'Completed', 'Canceled'])->default('Pending');
             $table->timestamps();
         });
     }

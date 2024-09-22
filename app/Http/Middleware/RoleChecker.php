@@ -19,6 +19,6 @@ class RoleChecker
         if (Auth::check() && Auth::user()->role === $role) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/login');
     }
 }

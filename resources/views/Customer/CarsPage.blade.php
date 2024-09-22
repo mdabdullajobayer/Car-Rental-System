@@ -61,9 +61,9 @@
                                 Availability: {{ $car->availability ? 'Available' : 'Not Available' }}
                             </p>
                             @if ($car->availability)
-                                <a href="{{ route('rentals.create', $car->id) }}" class="btn btn-success">Rent Now</a>
+                                <a href="{{ route('cars.view', $car->id) }}" class="btn btn-success w-100">Rent Now</a>
                             @else
-                                <button class="btn btn-danger" disabled>Not Available</button>
+                                <button class="btn btn-danger w-100" disabled>Not Available</button>
                             @endif
                         </div>
                     </div>

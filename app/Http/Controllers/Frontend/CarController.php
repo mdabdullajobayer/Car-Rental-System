@@ -23,9 +23,14 @@ class CarController extends Controller
         if ($request->has('price') && $request->price != '') {
             $cars->where('daily_rent_price', '<=', $request->price);
         }
-        $cars = $cars->limit(12)->get();
+        $cars = $cars->get();
         $brands = Car::select('brand')->distinct()->get();
         $cartype = Car::select('car_type')->distinct()->get();
         return view('Customer.CarsPage', compact('cars', 'brands', 'cartype'));
+    }
+
+    public function CarsView(Car $cars)
+    {
+        return view('Customer.CarsView', compact('cars'));
     }
 }
