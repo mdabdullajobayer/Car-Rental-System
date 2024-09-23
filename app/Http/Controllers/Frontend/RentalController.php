@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CarPurchaseAdminMail;
+use App\Mail\CarPurchaseUserMail;
 use App\Models\Car;
 use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RentalController extends Controller
 {
@@ -28,8 +31,20 @@ class RentalController extends Controller
             $validated['status'] = 'Pending';
             $validated['total_cost'] = $getdata->daily_rent_price;
 
+            $purchaseDetails = [
+                'user_name' => $request->user()->name,
+                'car_name' => $getdata->name,
+                'price' => $getdata->daily_rent_price,
+                'start_date' => $validated['start_date'],
+                'end_date' => $validated['end_date'],
+            ];
             Rental::create($validated);
-            // Car::where('id', $validated['car_id'])->update(['availability' => 0]);
+            Mail::to($request->user()->email)
+                ->send(new CarPurchaseUserMail($purchaseDetails));
+
+            $adminEmail = 'mdabdullajovayer@gmail.com';
+            Mail::to($adminEmail)
+                ->send(new CarPurchaseAdminMail($purchaseDetails));
             return redirect()->back()->with('success', 'Rentals Create successfully!');
         } catch (\Throwable $th) {
             throw $th;
