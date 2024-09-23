@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\Pages;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -28,5 +29,11 @@ class PageController extends Controller
         $cartype = Car::select('car_type')->distinct()->get();
         return view('index', compact('cars', 'brands', 'cartype'));
     }
-    
+
+    public function Pages(Request $request)
+    {
+        $type = $request->type;
+        $data = Pages::where('type', $type)->first();
+        return view('Pages.index', compact('data'));
+    }
 }

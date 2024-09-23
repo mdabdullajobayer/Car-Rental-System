@@ -34,6 +34,7 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/cars', [FrontendCarController::class, 'index'])->name('customer.cars.index');
 Route::get('/cars-view/{cars}', [FrontendCarController::class, 'CarsView'])->name('cars.view');
+Route::get('/pages', [PageController::class, 'Pages'])->name('customer.pages');
 
 Route::prefix('customer')->middleware('role:customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [CustomerController::class, 'index'])->name('dashboard');

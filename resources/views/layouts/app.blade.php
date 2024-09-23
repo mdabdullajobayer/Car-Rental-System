@@ -28,8 +28,15 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('customer.cars.index') }}">Cars</a>
+                        <a class="nav-link" href="{{ route('customer.cars.index') }}">Rentals</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('pages?type=about') }}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('pages?type=contact') }}">Contact Us</a>
+                    </li>
+
                     @if (Route::has('login'))
                         @auth
                             <li class="nav-item">
@@ -49,7 +56,8 @@
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </div>
