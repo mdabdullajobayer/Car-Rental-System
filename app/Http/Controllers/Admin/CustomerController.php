@@ -37,11 +37,15 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
+            'phone_number' => 'required',
+            'address' => 'required',
             'password' => 'required|min:8|confirmed',
         ]);
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'phone_number' => $validated['phone_number'],
+            'address' => $validated['address'],
             'password' => Hash::make($validated['password']),
         ]);
         return redirect()->back()->with('success', 'Customer registered successfully!');
@@ -51,8 +55,18 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
+            'phone_number' => 'required',
+            'address' => 'required',
+            'password' => 'required|min:8|confirmed',
         ]);
-        $customer->update($validated);
+
+        $customer->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone_number' => $validated['phone_number'],
+            'address' => $validated['address'],
+            'password' => Hash::make($validated['password']),
+        ]);
         return redirect()->back()->with('success', 'Customer Updated successfully!');
     }
 

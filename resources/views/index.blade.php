@@ -5,7 +5,7 @@
         <div class="container">
             <h1 class="display-4">Find Your Perfect Car</h1>
             <p class="lead">Explore a wide range of cars at affordable prices.</p>
-            <a href="{{ route('cars.index') }}" class="btn btn-primary btn-lg">Browse Cars</a>
+            <a href="{{ route('customer.cars.index') }}" class="btn btn-primary btn-lg">Browse Cars</a>
         </div>
     </div>
 

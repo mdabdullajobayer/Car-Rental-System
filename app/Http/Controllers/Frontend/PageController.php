@@ -28,4 +28,5 @@ class PageController extends Controller
         $cartype = Car::select('car_type')->distinct()->get();
         return view('index', compact('cars', 'brands', 'cartype'));
     }
+    
 }

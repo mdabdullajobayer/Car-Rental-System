@@ -5,7 +5,7 @@
         <h1>Available Cars</h1>
 
         <!-- Filter Form -->
-        <form method="GET" action="{{ route('home') }}">
+        <form method="GET" action="{{ route('customer.cars.index') }}">
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="car_type">Car Type:</label>
@@ -41,7 +41,7 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Filter</button>
-                    <a href="{{ route('home') }}" class="btn btn-secondary">Reset</a>
+                    <a href="{{ route('customer.cars.index') }}" class="btn btn-secondary">Reset</a>
                 </div>
             </div>
         </form>
