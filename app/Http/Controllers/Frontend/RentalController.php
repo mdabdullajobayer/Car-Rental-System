@@ -42,7 +42,7 @@ class RentalController extends Controller
             Mail::to($request->user()->email)
                 ->send(new CarPurchaseUserMail($purchaseDetails));
 
-            $adminEmail = 'mdabdullajovayer@gmail.com';
+            $adminEmail = env('ADMIN_MAIL');
             Mail::to($adminEmail)
                 ->send(new CarPurchaseAdminMail($purchaseDetails));
             return redirect()->back()->with('success', 'Rentals Create successfully!');

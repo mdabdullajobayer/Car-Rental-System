@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <title>Car Rental System</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -28,7 +32,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('customer.cars.index') }}">Rentals</a>
+                        <a class="nav-link" href="{{ route('customer.cars.index') }}">Cars</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('pages?type=about') }}">About Us</a>

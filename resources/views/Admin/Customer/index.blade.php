@@ -32,6 +32,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Address</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -41,6 +43,8 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone_number }}</td>
+                                    <td>{{ $item->address }}</td>
                                     <td>
                                         <div class="d-flex gap-2">
                                             <div>

@@ -14,7 +14,7 @@ class AdminController extends Controller
         $totalCars = Car::count();
         $availableCars = Car::where('availability', 1)->count();
         $totalRentals = Rental::count();
-        $totalEarnings = Rental::sum('total_cost');
+        $totalEarnings = Rental::where('status', 'Completed')->sum('total_cost');
         return view('Admin.home', compact('totalCars', 'availableCars', 'totalRentals', 'totalEarnings'));
     }
 }

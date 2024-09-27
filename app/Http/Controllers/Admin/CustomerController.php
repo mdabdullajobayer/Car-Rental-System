@@ -57,15 +57,13 @@ class CustomerController extends Controller
             'email' => 'required|email',
             'phone_number' => 'required',
             'address' => 'required',
-            'password' => 'required|min:8|confirmed',
         ]);
-
         $customer->update([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
             'address' => $validated['address'],
-            'password' => Hash::make($validated['password']),
+            'password' => $request->input('password') ? Hash::make($request->input('password')) : $customer->password,
         ]);
         return redirect()->back()->with('success', 'Customer Updated successfully!');
     }

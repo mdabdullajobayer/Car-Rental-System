@@ -19,6 +19,7 @@
                                 <th scope="col">Start Date</th>
                                 <th scope="col">End Date</th>
                                 <th scope="col">Total Cost</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,10 +30,11 @@
                                     <td>{{ $r->start_date }}</td>
                                     <td>{{ $r->end_date }}</td>
                                     <td> {{ $r->total_cost }}</td>
+                                    <td> {{ $r->status }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center"> No Hostory Found</td>
+                                    <td colspan="6" class="text-center"> No Hostory Found</td>
                                 </tr>
                             @endforelse
                         </tbody>
